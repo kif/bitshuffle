@@ -49,14 +49,16 @@ LIBRARY_DIRS = []
 if sys.platform == 'darwin':
     # putting here both macports and homebrew paths will generate
     # "ld: warning: dir not found" at the linking phase
-    INCLUDE_DIRS += ['/opt/local/include'] # macports
-    LIBRARY_DIRS += ['/opt/local/lib']     # macports
-    INCLUDE_DIRS += ['/usr/local/include'] # homebrew
-    LIBRARY_DIRS += ['/usr/local/lib']     # homebrew
+    INCLUDE_DIRS += ['/opt/local/include']  # macports
+    LIBRARY_DIRS += ['/opt/local/lib']  # macports
+    INCLUDE_DIRS += ['/usr/local/include']  # homebrew
+    LIBRARY_DIRS += ['/usr/local/lib']  # homebrew
 elif sys.platform.startswith('freebsd'):
-    INCLUDE_DIRS += ['/usr/local/include'] # homebrew
-    LIBRARY_DIRS += ['/usr/local/lib']     # homebrew
-
+    INCLUDE_DIRS += ['/usr/local/include']  # homebrew
+    LIBRARY_DIRS += ['/usr/local/lib']  # homebrew
+elif sys.platform.startswith('linux'):
+    INCLUDE_DIRS += ['/usr/include/hdf5/serial/']  # debian8
+    LIBRARY_DIRS += ['/usr/lib/x86_64-linux-gnu/hdf5/serial']  # debian8
 
 # OSX's clang compliler does not support OpenMP.
 if sys.platform == 'darwin':
@@ -89,10 +91,10 @@ h5filter = Extension("bitshuffle.h5",
                             "src/iochain.c", "lz4/lz4.c"],
                    include_dirs=INCLUDE_DIRS + ["src/", "lz4/"],
                    library_dirs=list(LIBRARY_DIRS),
-                   depends=["src/bitshuffle.h", "src/bitshuffle_core.h", 
+                   depends=["src/bitshuffle.h", "src/bitshuffle_core.h",
                             "src/iochain.h", "src/bshuf_h5filter.h",
                             "lz4/lz4.h"],
-                   libraries=['hdf5',],
+                   libraries=['hdf5', ],
                    extra_compile_args=list(COMPILE_FLAGS),
                    define_macros=list(MACROS),
                    )
@@ -107,7 +109,7 @@ filter_plugin = Extension("bitshuffle.plugin.libh5bshuf",
                    depends=["src/bitshuffle.h", "src/bitshuffle_core.h",
                             "src/iochain.h", 'src/bshuf_h5filter.h',
                             "lz4/lz4.h"],
-                   libraries=['hdf5',],
+                   libraries=['hdf5', ],
                    extra_compile_args=['-fPIC', '-g'] + COMPILE_FLAGS,
                    define_macros=list(MACROS),
                    )
@@ -169,8 +171,8 @@ class install(install_):
             else:
                 print("HDF5 < 1.8.11, not installing filter plugins.")
                 return
-            #from h5py import h5
-            #h5version = h5.get_libversion()
+            # from h5py import h5
+            # h5version = h5.get_libversion()
             plugin_build = path.join(self.build_lib, "bitshuffle", "plugin")
             try:
                 os.makedirs(self.h5plugin_dir)
@@ -211,30 +213,30 @@ class build_ext(build_ext_):
             self.libraries += ['gomp']
             for e in self.extensions:
                 if '-fopenmp' not in e.extra_compile_args:
-                    e.extra_compile_args += ['-fopenmp',]
+                    e.extra_compile_args += ['-fopenmp', ]
 
 
 # TODO hdf5 support should be an "extra". Figure out how to set this up.
 
 setup(
-    name = 'bitshuffle',
-    version = VERSION,
+    name='bitshuffle',
+    version=VERSION,
 
-    packages = ['bitshuffle', 'bitshuffle.tests'],
+    packages=['bitshuffle', 'bitshuffle.tests'],
     scripts=[],
-    ext_modules = EXTENSIONS,
-    cmdclass = {'build_ext': build_ext, 'install': install, 'develop': develop},
-    install_requires = ['numpy', 'h5py', 'Cython', 'setuptools>=0.7'],
-    #extras_require = {'H5':  ["h5py"]},
+    ext_modules=EXTENSIONS,
+    cmdclass={'build_ext': build_ext, 'install': install, 'develop': develop},
+    install_requires=['numpy', 'h5py', 'Cython', 'setuptools>=0.7'],
+    # extras_require = {'H5':  ["h5py"]},
     package_data={'': ['data/*']},
 
     # metadata for upload to PyPI
-    author = "Kiyoshi Wesley Masui",
-    author_email = "kiyo@physics.ubc.ca",
-    description = "Bitshuffle filter for improving typed data compression.",
-    license = "MIT",
-    url = "https://github.com/kiyo-masui/bitshuffle",
-    download_url = "https://github.com/kiyo-masui/bitshuffle/tarball/0.2.3",
-    keywords = ['compression', 'hdf5', 'numpy'],
+    author="Kiyoshi Wesley Masui",
+    author_email="kiyo@physics.ubc.ca",
+    description="Bitshuffle filter for improving typed data compression.",
+    license="MIT",
+    url="https://github.com/kiyo-masui/bitshuffle",
+    download_url="https://github.com/kiyo-masui/bitshuffle/tarball/0.2.3",
+    keywords=['compression', 'hdf5', 'numpy'],
 )
 
