@@ -1,0 +1,5 @@
+hdf5-plugin-bitshuffle (0.1.0~bpo8) jessie; urgency=low
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Jerome Kieffer <jerome.kieffer@esrf.fr>  Fri, 08 Jul 2016 09:53:56 +0200

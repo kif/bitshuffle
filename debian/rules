@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+# #export DH_VERBOSE=1
+#
+export PYBUILD_NAME=h5py
+export PYBUILD_AFTER_INSTALL_python2=dh_numpy
+export PYBUILD_AFTER_INSTALL_python3=dh_numpy3
+
+%:
+	dh $@ --with python2,python3 --buildsystem=pybuild
+
+override_dh_auto_build-indep:
+		PYTHONPATH=. http_proxy='127.0.0.1:9' sphinx-build -N -bhtml docs/ build/html
+
+override_dh_installdocs-indep:
+	dh_installdocs --indep
+	dh_sphinxdoc --indep
+
+
+#override_dh_install:
+#	@echo nothing to do for dh_install
+#
+#override_dh_auto_configure:
+#	dh_auto_configure -- --disable-static --libdir=$(DEST)/usr/lib/$(GNUARCH)/hdf5/plugins
+

@@ -1,0 +1,6 @@
+hdf5-plugin-bitshuffle for Debian
+---------------------------------
+
+HDF5 filter plugin providing the bitshuffle with LZ4/LZF compression algorithm
+
+ -- Jerome Kieffer <jerome.kieffer@esrf.fr>  Fri, 08 Jul 2016 11:00:00 +0100
