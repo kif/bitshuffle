@@ -1,0 +1,20 @@
+Source: hdf5-plugin-bitshuffle
+Priority: extra
+Maintainer: Jerome Kieffer <jerome.kieffer@esrf.fr>
+Build-Depends: debhelper (>= 9), pkg-config (>=0.26), libhdf5-dev (>=1.8.11),
+ hdf5-tools (>=1.8.11), 
+ cython, python-numpy, python-h5py, python-all-dev,
+ cython3, python3-numpy, python3-h5py, python3-all-dev, 
+Standards-Version: 3.9.4
+Section: science
+Homepage: https://github.com/kiyo-masui/bitshuffle
+
+Package: hdf5-plugin-bitshuffle
+Section: science
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},hdf5-plugins-common
+Pre-Depends: ${misc:Pre-Depends}
+Description: HDF5 plugin - bitshuffle compression
+ Filter for improving compression of typed binary data. 
+ LZ4/LZF compression filter for the HDF5 library. 
+
