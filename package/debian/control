@@ -9,6 +9,22 @@ Standards-Version: 3.9.4
 Section: science
 Homepage: https://github.com/kiyo-masui/bitshuffle
 
+Package: python-bitshuffle
+Section: science
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python
+Pre-Depends: ${misc:Pre-Depends}
+Description: python module for bitshuffle compression
+ Filter for improving compression of typed binary data.  
+
+Package: python3-bitshuffle
+Section: science
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3
+Pre-Depends: ${misc:Pre-Depends}
+Description: python3 module for  bitshuffle compression
+ Filter for improving compression of typed binary data.  
+
 Package: hdf5-plugin-bitshuffle
 Section: science
 Architecture: any

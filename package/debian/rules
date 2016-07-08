@@ -3,7 +3,7 @@
 # Uncomment this to turn on verbose mode.
 # #export DH_VERBOSE=1
 #
-export PYBUILD_NAME=h5py
+export PYBUILD_NAME=bitshuffle
 export PYBUILD_AFTER_INSTALL_python2=dh_numpy
 export PYBUILD_AFTER_INSTALL_python3=dh_numpy3
 

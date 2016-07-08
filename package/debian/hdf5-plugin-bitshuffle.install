@@ -1,0 +1,2 @@
+#!/usr/bin/dh-exec
+plugins/libh5*.so /usr/lib/${DEB_HOST_MULTIARCH}/hdf5/plugins
