@@ -1,4 +1,4 @@
-hdf5-plugin-bitshuffle (0.1.0~bpo8) jessie; urgency=low
+hdf5-plugin-bitshuffle (0.2.4~bpo8-1) jessie; urgency=low
 
   * Initial release. (Closes: #XXXXXX)
 
