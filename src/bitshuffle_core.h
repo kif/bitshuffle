@@ -28,16 +28,26 @@
 #ifndef BITSHUFFLE_CORE_H
 #define BITSHUFFLE_CORE_H
 
-
+// We assume GNU g++ defining `__cplusplus` has stdint.h
+#if (defined (__STDC_VERSION__) && __STDC_VERSION__ >= 199900L) || defined(__cplusplus)
 #include <stdint.h>
+#else
+  typedef unsigned char       uint8_t;
+  typedef unsigned short      uint16_t;
+  typedef unsigned int        uint32_t;
+  typedef   signed int        int32_t;
+  typedef unsigned long long  uint64_t;
+  typedef long long           int64_t;
+#endif
+
 #include <stdlib.h>
 
 
 // These are usually set in the setup.py.
 #ifndef BSHUF_VERSION_MAJOR
 #define BSHUF_VERSION_MAJOR 0
-#define BSHUF_VERSION_MINOR 2
-#define BSHUF_VERSION_POINT 4
+#define BSHUF_VERSION_MINOR 3
+#define BSHUF_VERSION_POINT 3
 #endif
 
 #ifdef __cplusplus
@@ -108,7 +118,7 @@ size_t bshuf_default_block_size(const size_t elem_size);
  *  number of bytes processed, negative error-code if failed.
  *
  */
-int64_t bshuf_bitshuffle(void* in, void* out, const size_t size,
+int64_t bshuf_bitshuffle(const void* in, void* out, const size_t size,
         const size_t elem_size, size_t block_size);
 
 
@@ -136,7 +146,7 @@ int64_t bshuf_bitshuffle(void* in, void* out, const size_t size,
  *  number of bytes processed, negative error-code if failed.
  *
  */
-int64_t bshuf_bitunshuffle(void* in, void* out, const size_t size,
+int64_t bshuf_bitunshuffle(const void* in, void* out, const size_t size,
         const size_t elem_size, size_t block_size);
 
 #ifdef __cplusplus
