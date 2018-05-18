@@ -4,6 +4,6 @@ recursive-include lz4 *.h *.c
 recursive-include lzf *.h *.c
 include setup.cfg.example
 include LICENSE
-inclide requirements.txt
+include requirements.txt
 exclude setup.cfg
 

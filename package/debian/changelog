@@ -1,3 +1,9 @@
+hdf5-plugin-bitshuffle (0.3.3~bpo9-1) stretch; urgency=low
+
+  * new upstream release. 
+
+ -- Jerome Kieffer <jerome.kieffer@esrf.fr>  Fri, 18 May 2018 09:33:56 +0200
+
 hdf5-plugin-bitshuffle (0.2.4~bpo8-1) jessie; urgency=low
 
   * Initial release. (Closes: #XXXXXX)
