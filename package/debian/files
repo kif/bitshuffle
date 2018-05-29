@@ -1,3 +1,5 @@
-python-bitshuffle_0.2.4~bpo8-1_amd64.deb science extra
-python3-bitshuffle_0.2.4~bpo8-1_amd64.deb science extra
-hdf5-plugin-bitshuffle_0.2.4~bpo8-1_amd64.deb science extra
+hdf5-plugin-bitshuffle-dbgsym_0.3.3~bpo9-1_amd64.deb debug optional
+hdf5-plugin-bitshuffle_0.3.3~bpo9-1_amd64.buildinfo science extra
+hdf5-plugin-bitshuffle_0.3.3~bpo9-1_amd64.deb science extra
+python-bitshuffle_0.3.3~bpo9-1_amd64.deb science extra
+python3-bitshuffle_0.3.3~bpo9-1_amd64.deb science extra

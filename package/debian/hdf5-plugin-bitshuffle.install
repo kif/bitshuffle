@@ -1,2 +1,3 @@
 #!/usr/bin/dh-exec
-plugins/libh5*.so /usr/lib/${DEB_HOST_MULTIARCH}/hdf5/plugins
+${PYBUILD_DESTDIR}/usr/lib/python*/dist-packages/bitshuffle/plugin/libh5*.so /usr/lib/${DEB_HOST_MULTIARCH}/hdf5/plugins
+

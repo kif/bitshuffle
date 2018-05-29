@@ -1,11 +1,14 @@
 #!/usr/bin/make -f
 
 # Uncomment this to turn on verbose mode.
-# #export DH_VERBOSE=1
+export DH_VERBOSE=1
 #
 export PYBUILD_NAME=bitshuffle
 export PYBUILD_AFTER_INSTALL_python2=dh_numpy
 export PYBUILD_AFTER_INSTALL_python3=dh_numpy3
+export PYBUILD_DISABLE_python2=test
+export PYBUILD_DISABLE_python3=test
+export PYBUILD_DESTDIR=debian/pybuild
 
 %:
 	dh $@ --with python2,python3 --buildsystem=pybuild
@@ -17,16 +20,7 @@ override_dh_installdocs-indep:
 	dh_installdocs --indep
 	dh_sphinxdoc --indep
 
-# unactive test for now
-override_dh_auto_test:
-	echo unactive test for now
-#	PYBUILD_SYSTEM=custom \
-#	PYBUILD_TEST_ARGS="PYTHONPATH={build_dir} FABIO_TESTIMAGES=testimages {interpreter} ./run_tests.py" dh_auto_test
-
-
-#override_dh_install:
-#	@echo nothing to do for dh_install
-#
-#override_dh_auto_configure:
-#	dh_auto_configure -- --disable-static --libdir=$(DEST)/usr/lib/$(GNUARCH)/hdf5/plugins
+override_dh_clean:
+	dh_clean
+	rm -rf ${PYBUILD_DESTDIR}
 
