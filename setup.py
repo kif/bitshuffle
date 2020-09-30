@@ -12,6 +12,7 @@ from setuptools.command.install import install as install_
 import shutil
 import subprocess
 import sys
+import platform
 
 
 VERSION_MAJOR = 0
@@ -26,7 +27,11 @@ if VERSION_DEV:
     VERSION = VERSION + ".dev%d" % VERSION_DEV
 
 
-COMPILE_FLAGS = ['-O3', '-ffast-math', '-march=native', '-std=c99']
+if platform.machine() == "ppc64le":
+    COMPILE_FLAGS = ['-O3', '-ffast-math', '-mcpu=native', '-std=c99', "-DNO_WARN_X86_INTRINSICS"]
+else:
+    COMPILE_FLAGS = ['-O3', '-ffast-math', '-march=native', '-std=c99']
+
 # Cython breaks strict aliasing rules.
 COMPILE_FLAGS += ['-fno-strict-aliasing']
 COMPILE_FLAGS += ['-fPIC']
